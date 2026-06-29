@@ -4,29 +4,27 @@ public class PilaAcciones {
     private ArrayList<String> acciones;
 
     public PilaAcciones() {
-        acciones = new ArrayList<>();
+        acciones = new ArrayList<String>();
     }
 
-    public void apilar(String accion) {
-        acciones.add(accion);
-    }
-
-    public String desapilar() {
-        if (acciones.size() == 0) {
-            return "No hay acciones registradas.";
-        }
-        return acciones.remove(acciones.size() - 1);
+    public void registrar(String responsable, String detalle) {
+        String nombre = responsable == null || responsable.trim().equals("") ? "Sistema" : responsable.trim();
+        String codigo = String.format("ACT-%03d", acciones.size() + 1);
+        acciones.add(codigo + " | " + nombre + " | " + detalle);
     }
 
     public String mostrarHistorial() {
+        String texto = "--- HISTORIAL DE ACCIONES DE LA SESIÓN ---\n";
         if (acciones.size() == 0) {
-            return "No hay acciones registradas.";
+            return texto + "No existen acciones registradas todavía.\n";
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("--- HISTORIAL DE ACCIONES ---\n");
         for (int i = acciones.size() - 1; i >= 0; i--) {
-            sb.append(acciones.get(i)).append("\n");
+            texto += acciones.get(i) + "\n";
         }
-        return sb.toString();
+        return texto;
+    }
+
+    public int cantidadAcciones() {
+        return acciones.size();
     }
 }

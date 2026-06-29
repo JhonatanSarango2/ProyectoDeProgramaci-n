@@ -1,29 +1,54 @@
 public class Molde {
-    private int codigo;
-    private String nombre;
-    private String tipo;
-    private double area;
+    private String codigo;
+    private String codigoModelo;
+    private String nombrePieza;
+    private String talla;
+    private int cantidadCorte;
+    private double anchoCm;
+    private double altoCm;
+    private String estado;
+    private String notas;
 
-    public Molde(int codigo, String nombre, String tipo, double area) {
+    public Molde(String codigo, String codigoModelo, String nombrePieza, String talla,
+                 int cantidadCorte, double anchoCm, double altoCm,
+                 String estado, String notas) {
         this.codigo = codigo;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.area = area;
+        this.codigoModelo = codigoModelo;
+        this.nombrePieza = nombrePieza;
+        this.talla = talla;
+        this.cantidadCorte = cantidadCorte;
+        this.anchoCm = anchoCm;
+        this.altoCm = altoCm;
+        this.estado = estado;
+        this.notas = notas;
     }
 
-    public int getCodigo() { return codigo; }
-    public String getNombre() { return nombre; }
-    public String getTipo() { return tipo; }
-    public double getArea() { return area; }
+    public String getCodigo() { return codigo; }
+    public String getCodigoModelo() { return codigoModelo; }
+    public String getNombrePieza() { return nombrePieza; }
+    public String getTalla() { return talla; }
+    public int getCantidadCorte() { return cantidadCorte; }
+    public double getAnchoCm() { return anchoCm; }
+    public double getAltoCm() { return altoCm; }
+    public String getEstado() { return estado; }
+    public String getNotas() { return notas; }
 
-    public void setCodigo(int codigo) { this.codigo = codigo; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
-    public void setArea(double area) { this.area = area; }
+    public void setCodigoModelo(String codigoModelo) { this.codigoModelo = codigoModelo; }
+    public void setNombrePieza(String nombrePieza) { this.nombrePieza = nombrePieza; }
+    public void setTalla(String talla) { this.talla = talla; }
+    public void setCantidadCorte(int cantidadCorte) { this.cantidadCorte = cantidadCorte; }
+    public void setAnchoCm(double anchoCm) { this.anchoCm = anchoCm; }
+    public void setAltoCm(double altoCm) { this.altoCm = altoCm; }
+    public void setEstado(String estado) { this.estado = estado; }
+    public void setNotas(String notas) { this.notas = notas; }
 
-    @Override
+    public double calcularArea() {
+        return anchoCm * altoCm;
+    }
+
     public String toString() {
-        return "Molde [Codigo=" + codigo + ", Nombre=" + nombre + ", Tipo=" + tipo + ", Area=" + area + "]";
+        return codigo + " - " + nombrePieza + " | Talla " + talla +
+                " | Área: " + String.format("%.2f", calcularArea()) + " cm2" +
+                " | Cantidad: " + cantidadCorte + " | " + estado;
     }
 }
-
